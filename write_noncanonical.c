@@ -20,6 +20,10 @@
 #define FALSE 0
 #define TRUE 1
 
+#define FLAG 0x7E
+#define ADDRESS 0x03
+#define CONTROL 0x03
+
 #define BUF_SIZE 5
 
 volatile int STOP = FALSE;
@@ -105,11 +109,11 @@ int main(int argc, char *argv[])
     // Create string to send
     unsigned char buf[BUF_SIZE] = {0};
     
-    buf[0] = 0x7E;
-    buf[1] = 0x03;
-    buf[2] = 0x03;
+    buf[0] = FLAG;
+    buf[1] = CONTROL;
+    buf[2] = ADDRESS;
     buf[3] = (buf[1] ^ buf[2]);
-    buf[4] = 0x7E;
+    buf[4] = FLAG;
 
     buf[5] = '\0';
    
@@ -144,11 +148,11 @@ int main(int argc, char *argv[])
 
     unsigned char buf2[BUF_SIZE] = {0};
     
-    buf2[0] = 0x7E;
-    buf2[1] = 0x03;
-    buf2[2] = 0x03;
+    buf2[0] = FLAG;
+    buf2[1] = CONTROL;
+    buf2[2] = ADDRESS;
     buf2[3] = (buf2[1] ^ buf2[2]);
-    buf2[4] = 0x7E;
+    buf2[4] = FLAG;
 
     buf[5] = '\0';
    
